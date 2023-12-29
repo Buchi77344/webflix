@@ -6,3 +6,6 @@ urlpatterns = [
     path('category/<category>/',views.catpageview.as_view(), name= 'category'),
     path('movie/<str:pk>/',views.movie,name='movie'),
 ]
+
+
+

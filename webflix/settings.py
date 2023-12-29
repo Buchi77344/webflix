@@ -65,6 +65,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'base.views.category_list',
+
             ],
         },
     },
@@ -116,7 +117,9 @@ USE_L10N = True
 
 USE_TZ = True
 
+
 STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
+
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),

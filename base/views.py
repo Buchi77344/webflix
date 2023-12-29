@@ -43,3 +43,7 @@ def category_list(request):
     }
     return context
     
+
+
+# Create your views here.
+

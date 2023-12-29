@@ -15,14 +15,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+<<<<<<< HEAD
 from django.conf import settings
 from django.conf.urls.static import static
 
+=======
+>>>>>>> 64528bcb5ed55d659ff7a74311e107c5e85340f3
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('base.urls')),
 ]
+<<<<<<< HEAD
 
 
 urlpatterns =urlpatterns+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+=======
+>>>>>>> 64528bcb5ed55d659ff7a74311e107c5e85340f3
