@@ -1,0 +1,25 @@
+<h1>list of {{catlist.cat}} movies</h1>
+
+{% for movie in catlist.movie %}
+<div>
+  <a href="/movie/{{movie.uu_id}}"> <img class="img" src="{{movie.image_card.url}}"><a
+    <p>{{movie.description}}</p>
+
+</div>
+{% endfor %}
+
+<style>
+    div{
+        height: 150px;  
+        width: 300px;
+        margin-left: 10px;
+       
+    
+    }
+    .img{
+        width: 300px;
+        height: 150px;
+        border-color: black;
+        border-style: 3px;
+    }
+</style>
