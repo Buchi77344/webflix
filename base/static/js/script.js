@@ -26,7 +26,7 @@ let movieTextEl = document.querySelector(".movie-text")
 let imgWidth
 let carouselWidth = carousel.clientWidth
 let carouselScrollWidth = carousel.scrollWidth
-let carouselScrollX = carousel.scrollLeft
+let carouselScrollX = carousel.scrollLeft 
 let scrollDiff= carouselScrollWidth - carouselWidth
 let intervalId
 let textArr = ["Dragon warrior", "Kungfu Panda", "Superman vs batman", "Spiderman in the spider verse", "Wonder woman and the wishing stone", "The incredible Hulk", "Venom, let there be carnage"]
