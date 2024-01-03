@@ -1,3 +1,9 @@
+let topic = [];
+
+
+console.log(topic)
+
+
 // Navigation script
 let hamburger = document.querySelector(".hamburger")
 let mobileMenu = document.querySelector(".mobile-menu")
@@ -22,6 +28,7 @@ let carouselDivs = document.querySelectorAll(".carousel > .img-div")
 let scrollBtn = document.querySelectorAll(".slide-btn")
 let pagDots = document.querySelectorAll(".dot")
 let movieTextEl = document.querySelector(".movie-text")
+let movie
 
 let imgWidth
 let carouselWidth = carousel.clientWidth
@@ -30,7 +37,8 @@ let carouselScrollX = carousel.scrollLeft
 let scrollDiff= carouselScrollWidth - carouselWidth
 let intervalId
 let textArr = ["Dragon warrior", "Kungfu Panda", "Superman vs batman", "Spiderman in the spider verse", "Wonder woman and the wishing stone", "The incredible Hulk", "Venom, let there be carnage"]
-movieTextEl.innerHTML = textArr[0]
+// movieTextEl.innerHTML = textArr[0]
+
 
 carouselDivs.forEach((img) => {
     imgWidth = img.clientWidth
@@ -40,6 +48,18 @@ carouselDivs.forEach((img) => {
 
 let counter = (carouselScrollX / imgWidth)
 pagDots[counter].classList.add("active-dot")
+function showMovieText(){
+    fetch("topic")
+        .then(res => res.json())
+        .then(data => {
+            if(data){
+                movieTextEl.innerHTML = data[counter].name
+            }
+        })
+   
+    // movieTextEl.classList.add("movie-text-reveal")
+}
+showMovieText()
 
 scrollBtn.forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -94,15 +114,8 @@ function autoSlide(){
 }
 
 // autoSlide()
+let bol = false
 
-function showMovieText(){
-    counter = (carouselScrollX / imgWidth)
-    movieTextEl.innerHTML = textArr[counter]
-    movieTextEl.classList.toggle("movie-text-reveal")
-    // textArr.forEach(text => {
-    //     movieTextEl.innerHTML = text
-    // })
-}
 
 function enableAutoSlide(){
     carouselWrappper.addEventListener("mouseenter", () => clearInterval(intervalId))
