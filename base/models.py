@@ -25,3 +25,9 @@ class Movie(models.Model):
     def __str__ (self):
         return self.title
   
+class Topic(models.Model):
+    name = models.CharField(max_length=123)
+    des = models.TextField()
+    def __str__(self):
+        return self.name
+
