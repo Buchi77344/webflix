@@ -49,7 +49,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'base.middleware.SetUserIPMiddleware',
 ]
+SESSION_ENGINE  = 'django.contrib.sessions.backends.db'
 
 ROOT_URLCONF = 'webflix.urls'
 
@@ -64,6 +66,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'base.views.category_list',
+
             ],
         },
     },
@@ -115,6 +119,10 @@ USE_L10N = True
 
 USE_TZ = True
 
+
+
+
+
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
@@ -124,11 +132,6 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-
-DEFAULT_AUTO_FIELD ='django.db.models.BigAutoField'
-
 MEDIA_URL = '/media/'
-MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
-
-   
- 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

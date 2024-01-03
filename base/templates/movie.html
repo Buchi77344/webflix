@@ -1,3 +1,26 @@
-<video controls >
-    <source src = "{{ movie_details.video.url }}"/>
-</video>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale = 1.0"/>
+    <style>
+        video{
+            border: 1px solid blue;
+            border-radius : 5px;
+            object-fit: cover;
+        }
+    </style>
+
+</head>
+<body>
+    <video width = "600" height = "400" controls>
+        <source src = "/media/{{ movie_details.video }}" type = "video/mp4">
+        your browser does not support videos
+    </video>
+  <h1>views:{{count}}</h1>  
+
+</body>
+</html>
+
