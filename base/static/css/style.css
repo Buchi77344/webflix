@@ -40,7 +40,7 @@ img{
 .page{
     width : 100%;
     height: 100vh;
-
+    overflow-y : hidden;
 }
 
 .container{
@@ -66,7 +66,8 @@ nav .container{
 }
 
 .logo{
-    color : red;
+    color: #d00303;
+    font-size: 19px;
 }
 
 .index-links-container{
@@ -202,7 +203,6 @@ nav .container{
     width : 100%;
     background-color : #171717;
     overflow-y: hidden;
-
 }
 
 .main-section-grid{
@@ -291,6 +291,7 @@ nav .container{
     align-items: center;
     gap : 0px;
     width : 100%;
+    height : 100%;
     padding: 20px 10px 20px;
     position : relative; 
     cursor : pointer;
@@ -350,6 +351,7 @@ nav .container{
     color : var(--icons-clr);
     visibility : hidden; 
     width : 0;
+    font-size: clamp(.7rem, 2.5vw, 1rem);
     transition : width .5s
 }
 
@@ -360,6 +362,8 @@ nav .container{
 
 .main-feed{
     overflow-y: auto;
+    padding-bottom: 100px;
+
 }
 
 .carousel-wrapper{
@@ -441,13 +445,14 @@ nav .container{
 .movie-text{
     margin: 0;
     position: absolute;
-    left: 20px;
-    bottom: 50px;
+    left: 100px;
+    top: 40px;
     font-size: 18px;
     color: rgba(255, 255, 255, 0.9);
     font-weight: 600;
-    max-width : 300px;  
-    z-index : 2;
+    max-width: 300px;
+    z-index: 2;
+    text-transform: capitalize;
 
 }
 
@@ -458,14 +463,33 @@ nav .container{
 .description{
     position: absolute;
     left: 100px;
-    top: 30px;
+    top: 50%;
     margin: 0;
     max-width: 400px;
     z-index: 2;
     color: var(--carousel-btn-clr);
     font-size: 15px;
     line-height: 1.6;
+    transform: translateY(-50%);
 }
+
+.watch-btn{
+    border: none;
+    padding: 10px 30px;
+    border-radius: 5px;
+    background-color: #ff000094;
+    color: rgba(255,255,255,.9);
+    font-size: 15px;
+    letter-spacing: 1px;
+}
+
+.carousel-container .watch-btn{
+    position: absolute;
+    bottom: 40px;
+    left: 100px;
+    z-index: 2;
+}
+
 
 @keyframes fade {
     0%{
@@ -546,11 +570,11 @@ nav .container{
     scroll-behavior: smooth;
     user-select: none;
     padding: 10px 20px 20px;
-    margin-bottom: 60px;
+    /* margin-bottom: 60px; */
 }
 
 .video-link{
-    flex : 1 0 250px;
+    flex : 1 0 calc((100%/ 4) - 15px);
     position : relative;
     overflow: hidden;
     transition : transform .3s;
@@ -558,7 +582,7 @@ nav .container{
 }
 
 .video-link:hover{
-    transform : scale(1.1)
+    transform : scale(1.05)
 }
 
 
@@ -599,18 +623,27 @@ nav .container{
 .cta{
     display : flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 .details{
     margin-top : 20px;
+    width : 38%;
 }
 
 .details p{
     margin : 10px 0 0;
 }
 
-.cta button{
-    align-self: flex-end;
+
+.cta .watch-btn{
+    padding: 10px;
+    border-radius: 5px;
+    letter-spacing: 0px;
+    width: 38%;
+    text-align: center;
+    align-self: end;
+    max-width: 100px;
 }
 
 @media(max-width : 900px){
@@ -621,8 +654,6 @@ nav .container{
     .hamburger{
         display : flex;
     }
-
-  
 
     .left-side-bar{
         position : fixed;
@@ -649,7 +680,8 @@ nav .container{
     .menu-item{
         flex-direction : column;
         gap : 10px;
-        padding : 10px 0;
+        padding : 0px 10px;
+        width: 25%;
     }
 
     .menu-item p{
@@ -658,6 +690,48 @@ nav .container{
         
     }
 
+    .slide-btn{
+        padding: 15px;
+    }
+
+    /* .video-link{
+        flex : 1 0 100%;
+    } */
+
 }
+
+@media(max-width : 700px){
+    .video-link{
+        flex : 1 0 calc((100%/2) - 10px) ;
+    }
+
+    
+    .movie-text{
+        top : unset;
+        bottom : 50px;
+        left : 30px;
+    }
+    
+    .description{
+        display : none;
+    }
+
+    .dot{
+        padding : 8px;
+    }
+
+    .carousel-container .watch-btn{
+        display : none;
+    }
+
+}
+
+@media(max-width : 500px){
+    .video-link{
+        flex : 1 0 100%;
+    }
+}
+
+
 
 

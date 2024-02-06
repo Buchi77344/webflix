@@ -1,12 +1,12 @@
 
 from django.shortcuts import render ,redirect ,get_object_or_404
-from .models import Movie ,Category ,ViewedIP ,User
+from .models import Movie ,Category ,ViewedIP ,User, Topic
 from django.views import generic
 from django.urls import reverse
-from django.contrib.gis.geoip2 import GeoIP2
+# from django.contrib.gis.geoip2 import GeoIP2
 from django.db.models import Q
-
-
+import json
+from django.http import HttpResponse
 
 class indexpageview(generic.ListView):
     template_name = 'index.html'
@@ -26,7 +26,7 @@ def topics(request):
     context ={
         'topic_json':topic_json
     }
-    return HttpResponse (topic_json , context)
+    return HttpResponse(topic_json , context)
      
 def movie(request,pk):
     movie_uuid =pk

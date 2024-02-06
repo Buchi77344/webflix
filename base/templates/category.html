@@ -2,9 +2,9 @@
 
 {% for movie in catlist.movie %}
 <div>
-  <a href="/movie/{{movie.uu_id}}"> <img class="img" src="{{movie.image_card.url}}"><a
-    <p>{{movie.description}}</p>
-
+    <a href="/movie/{{movie.uu_id}}"> <img class="img" src="{{movie.image_card.url}}">
+        <p>{{movie.description}}</p>
+    </a>
 </div>
 {% endfor %}
 

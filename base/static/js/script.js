@@ -28,7 +28,8 @@ let carouselDivs = document.querySelectorAll(".carousel > .img-div")
 let scrollBtn = document.querySelectorAll(".slide-btn")
 let pagDots = document.querySelectorAll(".dot")
 let movieTextEl = document.querySelector(".movie-text")
-let movie
+let movieDesc = document.querySelector(".description")
+console.log(movieDesc)
 
 let imgWidth
 let carouselWidth = carousel.clientWidth
@@ -36,24 +37,26 @@ let carouselScrollWidth = carousel.scrollWidth
 let carouselScrollX = carousel.scrollLeft 
 let scrollDiff= carouselScrollWidth - carouselWidth
 let intervalId
-let textArr = ["Dragon warrior", "Kungfu Panda", "Superman vs batman", "Spiderman in the spider verse", "Wonder woman and the wishing stone", "The incredible Hulk", "Venom, let there be carnage"]
+// let textArr = ["Dragon warrior", "Kungfu Panda", "Superman vs batman", "Spiderman in the spider verse", "Wonder woman and the wishing stone", "The incredible Hulk", "Venom, let there be carnage"]
 // movieTextEl.innerHTML = textArr[0]
 
 
 carouselDivs.forEach((img) => {
     imgWidth = img.clientWidth
-
 })
  
 
 let counter = (carouselScrollX / imgWidth)
 pagDots[counter].classList.add("active-dot")
+// console.log(pagDots[counter])
 function showMovieText(){
     fetch("topic")
         .then(res => res.json())
         .then(data => {
             if(data){
                 movieTextEl.innerHTML = data[counter].name
+                movieDesc.innerHTML = data[counter].des
+                // console.log(data[counter])
             }
         })
    
@@ -67,9 +70,18 @@ scrollBtn.forEach((btn) => {
         if (carouselScrollX < 0){
             carouselScrollX = 0
         }
+
+        if(carouselScrollX == 7554){
+            // carouselScrollX = 0
+            carousel.style.scrollBehavior = "unset"
+        }else{
+            carousel.style.scrollBehavior = "smooth"
+
+        }
         carousel.scrollLeft = Math.ceil(carouselScrollX)
-        carouselScrollX >= scrollDiff ? document.querySelector(".next-btn").style.display = "none" : document.querySelector(".next-btn").style.display = "block"
+        // carouselScrollX >= scrollDiff ? document.querySelector(".next-btn").style.display = "none" : document.querySelector(".next-btn").style.display = "block"
         carouselScrollX == 0 ? document.querySelector(".prev-btn").style.display = "none" : document.querySelector(".prev-btn").style.display = "block"
+        console.log(carouselScrollX)
         activeDots()
         showMovieText()
     })
@@ -107,10 +119,18 @@ function activeDots(){
 function autoSlide(){
     intervalId = setInterval(() => {
         carouselScrollX = carouselScrollX == 0 ? carouselScrollX += imgWidth : carouselScrollX >= scrollDiff ? 0 : carouselScrollX += imgWidth
+        if(carousel.scrollLeft >= 7554){
+            // carouselScrollX = 0
+            // carousel.scrollLeft = 0
+            carousel.style.scrollBehavior = "unset"
+        }else{
+            carousel.style.scrollBehavior = "smooth"
+
+        }
         carousel.scrollLeft = carouselScrollX 
         activeDots()
         showMovieText()
-    }, 1000)
+    }, 4000)
 }
 
 // autoSlide()
