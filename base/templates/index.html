@@ -5,19 +5,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel = "stylesheet" href = "{% static 'css/style.css' %}"> 
-    <script defer src = "{% static 'js/script.js' %}"></script>
+    <script type="module" defer src = "{% static 'js/script.js' %}"></script>
     <title>Document</title>
 </head>
 <body>
+    <div class = "loader-container">
+        {% comment %} <div class = "loader"></div>  {% endcomment %}
+        <svg viewBox = "0 0 400 350">
+            <text x = "50%" y = "50%" dy = "3.2rem" text-anchor = "middle" class = "text-body">Webflix</text>
+            <text x = "50%" y = "50%" dy = "3.2rem" dx = "11.1rem" text-anchor = "middle" class = "text-body">.</text>
+        </svg>
+    </div>
     <div class = "page">
-
         <nav>
             <div class = "container">
                 <div class = "nav-wrapper">
                     <a href = "/"><span class = "logo">WEBFLIX</span></a>
                     <ul class = "index-links-container">
-                        <li><a class = "index-links" href = "#">Home</a></li>
-                        <li><a class = "index-links" href = "#">About Us</a></li>
+                        <li><a class = "index-links" href = "/">Home</a></li>
+                        <li><a class = "index-links" href = "aboutus">About Us</a></li>
                         <li><a class = "index-links" href = "#">Genre</a></li>
                         <li><a class = "index-links" href = "#">My List</a></li>
                     </ul>
@@ -35,10 +41,10 @@
 
                 <div class = "mobile-menu">
                     <ul class = "mobile-links-container">
-                        <li><a class = "mobile-link" href = "#">Home</a></li>
+                        <li><a class = "mobile-link" href = "/">Home</a></li>
                         <li><a class = "mobile-link" href = "#">Genre</a></li>
                         <li><a class = "mobile-link" href = "#">My List</a></li>
-                        <li><a class = "mobile-link" href = "#">About Us</a></li>
+                        <li><a class = "mobile-link" href = "aboutus">About Us</a></li>
                     </ul>
                 </div>
             </div>
@@ -53,7 +59,7 @@
                             <span></span>
                             <span></span>
                         </div>
-
+                        
                         <p class = "menu-icon-text">Menu</p>
                     </div>
 
@@ -127,36 +133,37 @@
                     </ul>
                 </div>
 
+
                 <div class = "main-feed">
                     <div class = "carousel-wrapper">
                         <div class = "carousel-container">
                             <div class = "carousel">
                                 <div class = "img-div">
-                                    <img src = "/static/img/girl-pic.jpg" alt = "test-image">
+                                    <img src = "/static/img/poster.jpg" alt = "test-image">
                                 </div>
 
                                 <div class = "img-div">
-                                    <img src = "/static/img/blackman.jpg" alt = "test-image">
+                                    <img src = "/static/img/poster1.jpg" alt = "test-image">
                                 </div>
 
                                 <div class = "img-div">
-                                    <img src = "/static/img/guy-suit.jpg" alt = "test-image">
+                                    <img src = "/static/img/poster2.jpg" alt = "test-image">
                                 </div>
 
                                 <div class = "img-div">
-                                    <img src = "/static/img/pic-2.jpg" alt = "test-image">
+                                    <img src = "/static/img/poster3.jpg" alt = "test-image">
                                 </div>
 
                                 <div class = "img-div">
-                                    <img src = "/static/img/pic-3.jpg" alt = "test-image">
+                                    <img src = "/static/img/poster4.jpg" alt = "test-image">
                                 </div>
 
                                 <div class = "img-div">
-                                    <img src = "/static/img/pic-4.jpg" alt = "test-image">
+                                    <img src = "/static/img/poster5.jpg" alt = "test-image">
                                 </div>
 
                                 <div class = "img-div">
-                                    <img src = "/static/img/pic-5.jpg" alt = "test-image">
+                                    <img src = "/static/img/poster6.jpg" alt = "test-image">
                                 </div>
                             </div>
                             <p class = "movie-text">Movie text</p>
@@ -191,13 +198,17 @@
                             </div>
                         </div>
                     </div>
+                    
                     <div class = "movies-section">
                         <h2>Latest Movies</h2>
+                     
                         
                         <div class = "video-card-container">
 
                             <a class = "video-link" href = "/">
-                                <img class = "video-card" src = "/static/img/pic-2.jpg" alt = "video image card"/>
+                            
+                                <img class = "video-card" src = "https://image.tmdb.org/t/p/w500{{movie.poster_path}}" alt = "video image card"/>
+                       
                                 <div class = "video-description">
                                     <h3>HD</h3>
                                     <div class = "cta">
@@ -207,13 +218,13 @@
                                             <p>5 star rating</p>
                                         </div>
     
-                                        <butto class = "watch-btn"> click here</button>
+                                        <button class = "watch-btn"> click here</button>
 
                                     </div>
                                 </div>
-                            </a>
+
                             <a class = "video-link" href = "/">
-                                <img class = "video-card" src = "/static/img/pic-3.jpg" alt = "video image card"/>
+                                <img class = "video-card" src = "/static/img/poster1.jpg" alt = "video image card"/>
                                 <div class = "video-description">
                                     <h3>HD</h3>
 
@@ -224,7 +235,7 @@
                                 </div>
                             </a>
                             <a class = "video-link" href = "/">
-                                <img class = "video-card" src = "/static/img/girl-pic.jpg" alt = "video image card"/>
+                                <img class = "video-card" src = "/static/img/poster2.jpg" alt = "video image card"/>
                                 <div class = "video-description">
                                     <h3>HD</h3>
 
@@ -235,19 +246,7 @@
                                 </div>
                             </a>
                             <a class = "video-link" href = "/">
-                                <img class = "video-card" src = "/static/img/pic-4.jpg" alt = "video image card"/>
-                                <div class = "video-description">
-                                    <h3>HD</h3>
-
-                                    <div class = "details">
-                                        <p>PG-13</p>
-                                        <p>5 star rating</p>
-                                    </div>
-                                </div>
-                            </a>
-
-                            <a class = "video-link" href = "/">
-                                <img class = "video-card" src = "/static/img/pic-5.jpg" alt = "video image card"/>
+                                <img class = "video-card" src = "/static/img/poster3.jpg" alt = "video image card"/>
                                 <div class = "video-description">
                                     <h3>HD</h3>
 
@@ -259,7 +258,19 @@
                             </a>
 
                             <a class = "video-link" href = "/">
-                                <img class = "video-card" src = "/static/img/blackman.jpg" alt = "video image card"/>
+                                <img class = "video-card" src = "/static/img/poster4.jpg" alt = "video image card"/>
+                                <div class = "video-description">
+                                    <h3>HD</h3>
+
+                                    <div class = "details">
+                                        <p>PG-13</p>
+                                        <p>5 star rating</p>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <a class = "video-link" href = "/">
+                                <img class = "video-card" src = "/static/img/poster5.jpg" alt = "video image card"/>
                                 <div class = "video-description">
                                         <h3>HD</h3>
 
@@ -270,7 +281,7 @@
                                     </div>
                             </a>
                             <a class = "video-link" href = "/">
-                                <img class = "video-card" src = "/static/img/guy-suit.jpg" alt = "video image card"/>
+                                <img class = "video-card" src = "/static/img/poster6.jpg" alt = "video image card"/>
                                 <div class = "video-description">
                                         <h3>HD</h3>
 
@@ -293,11 +304,18 @@
         <!-- <main></main>
         <footer></footer> -->
     </div>
-
     <script>
-        
+        const loaderContainer = document.querySelector(".loader-container")
+        const page = document.querySelector(".page")
 
-
+        window.addEventListener("load", () => {
+            setTimeout(() => {
+                loaderContainer.classList.add("hidden")
+                page.classList.add("visible")
+            }, 3000)
+        })
     </script>
 </body>
 </html>
+
+ 

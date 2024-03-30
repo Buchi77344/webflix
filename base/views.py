@@ -1,15 +1,24 @@
 
-from django.shortcuts import render ,redirect ,get_object_or_404
-from .models import Movie ,Category ,ViewedIP ,User, Topic ,LatestMovie
+from django.shortcuts import render ,redirect ,get_object_or_404,HttpResponse
+from .models import Movie ,Category ,ViewedIP ,User, Topic ,LatestMovie ,YourModel
 from django.views import generic
 from django.urls import reverse
 # from django.contrib.gis.geoip2 import GeoIP2
-from django.db.models import Q
+from django.db.models import Q 
 import json
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_protect
 import json
 from django.http import JsonResponse
+from.models  import LatestMovie
+import requests
+import time
+from .snap import get_latest_movie
+
+
+
+
+
 
 
 class indexpageview(generic.ListView):
@@ -18,10 +27,11 @@ class indexpageview(generic.ListView):
     context_object_name = 'movies'
     
 def index(request):
-    movies = Movie.objects.all()
+    movie =get_latest_movie()
     context = {
-        'movies':movies
+        'movie': movie
     }
+
     return render (request, 'index.html',context)
 
 def topics(request):
@@ -98,21 +108,61 @@ def category_list(request):
 #         return render (request, 'create_movie_list.html',context)
 
 def movie_list(request):
-    return render (request, 'movie_list.html')
+    movie_data =get_latest_movie()
+    context = {
+        'movie_data': movie_data
+    }
+    return render (request, 'movie_list.html', context)
 
 
 
 # Create your views here.
-@csrf_protect
-def add_data(request):
-    if request.method =='POST':
-        try:
-            data =json.loads(request.body)
-            LatestMovie.objects.create(title=data.get('title',''),
-              image_cover  =data.get(' image_cover',''),                        
-            )
-            return JsonResponse({'succes':True})
-        except json.JSONDecodeError as e:
-            return JsonResponse({'error':'invalid Jason payload'})
-    else:
-         return JsonResponse({'error':'invalid request method'})
+# @csrf_protect
+# def add_data(request):
+#     if request.method =='POST':
+#         try:
+#             data =json.loads(request.body)
+#             LatestMovie.objects.create(title=data.get('title',''),
+#               image_cover  =data.get(' image_cover',''),                        
+#             )
+#             return JsonResponse({'succes':True})
+#         except json.JSONDecodeError as e:
+#             return JsonResponse({'error':'invalid Jason payload'})
+#     else:
+#          return JsonResponse({'error':'invalid request method'})
+    
+# api_key = '84cce1176ec500693be04f9ce60273de'
+# tmdb_url = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc'
+# response = requests.get(tmdb_url,params={'api_key':api_key})
+# if response.status_code==200:
+
+#     tmdb_data =response.json()
+
+#     title =tmdb_data.get('title') or tmdb_data.get(' original_title')
+#     description =tmdb_data.get('overview
+
+
+
+def dell(request):
+    text = ''
+    secs_time = time.localtime().tm_sec
+    print(secs_time)
+    cond_time = secs_time % 10
+    
+    if cond_time == 0:
+        text = "success"
+        print("10 seconds")
+    context= {
+        'text':text
+    }
+    return render(request,'del.html', context)
+
+
+
+ 
+
+
+def aboutus(request):
+    return render (request, 'aboutus.html')
+
+
