@@ -362,7 +362,8 @@ nav .container{
 
 .main-feed{
     overflow-y: auto;
-    padding-bottom: 100px;
+    overflow-x: hidden;
+    /* padding-bottom: 100px; */
 
 }
 
@@ -374,6 +375,8 @@ nav .container{
 
 .carousel-container{
     position : relative;
+    width : 100%;
+    height: 100%;
 }
 
 .slide-btn{
@@ -515,6 +518,8 @@ nav .container{
     overflow-x : hidden;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
+    width : 100%;
+    height: 100%;
 }
 
 .carousel::-webkit-scrollbar{
@@ -523,10 +528,17 @@ nav .container{
 
 .img-div{
     flex: 1 0 100%;
+    width : 100%;
+    position: absolute;
     height: 300px;
     background-image: linear-gradient(transparent, rgba(0,0,0,.8));
-    position : relative;
+    position : absolute;
     z-index : 1;
+    left : -100%;
+}
+
+.img-div.first{
+    left : 0;
 }
 
 .img-div::after{
@@ -732,6 +744,44 @@ nav .container{
     }
 }
 
+@keyframes prev1 {
+    0%{
+        left : 0
+    }
+
+    100%{
+        left : 100%
+    }
+}
+
+@keyframes prev2 {
+    0%{
+        left : -100%
+    }
+
+    100%{
+        left : 0
+    }
+}
+
+@keyframes next1 {
+    0%{
+        left : 0
+    }
+
+    100%{
+        left : -100%
+    }
+}
 
 
+@keyframes next2{
+    0%{
+        left : 100%
+    }
+
+    100%{
+        left : 0
+    }
+}
 

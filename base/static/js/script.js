@@ -1,7 +1,4 @@
-let topic = [];
-
-
-console.log(topic)
+// console.log(sendMovie.results)
 
 
 // Navigation script
@@ -29,6 +26,8 @@ let scrollBtn = document.querySelectorAll(".slide-btn")
 let pagDots = document.querySelectorAll(".dot")
 let movieTextEl = document.querySelector(".movie-text")
 let movieDesc = document.querySelector(".description")
+let videoContainer = document.querySelector(".video-card-container")
+
 console.log(movieDesc)
 
 let imgWidth
@@ -39,108 +38,190 @@ let scrollDiff= carouselScrollWidth - carouselWidth
 let intervalId
 // let textArr = ["Dragon warrior", "Kungfu Panda", "Superman vs batman", "Spiderman in the spider verse", "Wonder woman and the wishing stone", "The incredible Hulk", "Venom, let there be carnage"]
 // movieTextEl.innerHTML = textArr[0]
+// if(sendMovie){
 
+//     let listMel = ""
+//     function displayLatestMovies(){
+    
+//         for(let movie of sendMovie.results){
+//             listMel += `     
+//             <a class = "video-link" href = "/">
+//                 <img class = "video-card" src = 'https://image.tmdb.org/t/p/w500${movie.poster_path}' alt = "video image card"/>
+//                 <div class = "video-description">
+//                     <h3>HD</h3>
+//                     <div class = "cta">
+//                         <div class = "details">
+//                             <p>${movie.original_title}</p>
+//                             <p class = "pg-text">PG-13</p>
+//                             <p>${movie.vote_average}</p>
+//                         </div>
+        
+//                         <button class = "watch-btn"> click here</button>
+        
+//                     </div>
+//                 </div>
+//             </a>
+//             `
+//         }
+    
+//         videoContainer.innerHTML = listMel
+//     }
+    
+//     displayLatestMovies()
+    
+//     let listCel
+//     function displayCarousel(){
+//         for(let movie of sendMovie.results){
+//             listCel += `
+//                 <div class = "img-div">
+//                     <img src = "https://image.tmdb.org/t/p/w500${movie.poster_path}" alt = "test-image">
+//                 </div>
+//             `
+    
+//         }
+    
+//         carousel.innerHTML = listCel
+//     }
+    
+//     displayCarousel()
+// }else{
+//     console.log("null")
+// }
 
-carouselDivs.forEach((img) => {
-    imgWidth = img.clientWidth
-})
+// carouselDivs.forEach((img) => {
+//     imgWidth = img.clientWidth
+// })
+
+// console.log(imgWidth)
  
 
-let counter = (carouselScrollX / imgWidth)
+// let counter = imgWidth <= 0 ? 0 : (carouselScrollX / imgWidth)
+let counter = 0
+
 pagDots[counter].classList.add("active-dot")
 // console.log(pagDots[counter])
-function showMovieText(){
-    fetch("topic")
-        .then(res => res.json())
-        .then(data => {
-            if(data){
-                movieTextEl.innerHTML = data[counter].name
-                movieDesc.innerHTML = data[counter].des
-                // console.log(data[counter])
-            }
-        })
+// function showMovieText(){
+//     fetch("topic")
+//         .then(res => res.json())
+//         .then(data => {
+//             if(data){
+//                 movieTextEl.innerHTML = data[counter].name
+//                 movieDesc.innerHTML = data[counter].des
+//                 // console.log(data[counter])
+//             }
+//         })
    
-    // movieTextEl.classList.add("movie-text-reveal")
-}
-showMovieText()
+//     // movieTextEl.classList.add("movie-text-reveal")
+// }
+// showMovieText()
 
 scrollBtn.forEach((btn) => {
     btn.addEventListener("click", () => {
-        btn.className.includes("next-btn") ? carouselScrollX += imgWidth : carouselScrollX -= imgWidth
-        if (carouselScrollX < 0){
-            carouselScrollX = 0
-        }
+        btn.className.includes("next-btn") ? nextImage() : prevImage()
+        // console.log(carouselScrollX)
+        // console.log(counter)
 
-        if(carouselScrollX == 7554){
-            // carouselScrollX = 0
-            carousel.style.scrollBehavior = "unset"
-        }else{
-            carousel.style.scrollBehavior = "smooth"
+        // if (carouselScrollX < 0){
+        //     carouselScrollX = 0
+        // }
 
-        }
-        carousel.scrollLeft = Math.ceil(carouselScrollX)
-        // carouselScrollX >= scrollDiff ? document.querySelector(".next-btn").style.display = "none" : document.querySelector(".next-btn").style.display = "block"
-        carouselScrollX == 0 ? document.querySelector(".prev-btn").style.display = "none" : document.querySelector(".prev-btn").style.display = "block"
-        console.log(carouselScrollX)
-        activeDots()
-        showMovieText()
+        // if(carouselScrollX == 7554){
+        //     // carouselScrollX = 0
+        //     carousel.style.scrollBehavior = "unset"
+        // }else{
+        //     carousel.style.scrollBehavior = "smooth"
+
+        // }
+        // carousel.scrollLeft = Math.ceil(carouselScrollX)
+        // // carouselScrollX >= scrollDiff ? document.querySelector(".next-btn").style.display = "none" : document.querySelector(".next-btn").style.display = "block"
+        // carouselScrollX == 0 ? document.querySelector(".prev-btn").style.display = "none" : document.querySelector(".prev-btn").style.display = "block"
+        // console.log(carouselScrollX)
+        // activeDots()
+        // showMovieText()
     })
 })
+let cDiv
+function nextImage(){
+    carouselDivs[counter].style.animation = "next1 .5s ease forwards"
+    if(counter < 0 || counter >= carouselDivs.length - 1){
+        counter = 0
+    }else{
+        counter++
+    }
+
+    carouselDivs[counter].style.animation = "next2 .5s ease forwards"
+    console.log(carouselDivs[counter])
+}
+
+function prevImage(){
+    carouselDivs[counter].style.animation = "prev1 .5s ease forwards"
+    if(counter <= 0){
+        counter = carouselDivs.length - 1
+    }else{
+        counter--
+    }
+
+    carouselDivs[counter].style.animation = "prev2 .5s ease forwards"
+    console.log(counter)
+
+}
+
 
 //pagination button handler script
 
-for(let [index, d] of pagDots.entries()){
-    d.addEventListener("click", () => {
-        slideWithDots(index)
-        activeDots()
-    })
-}
+// for(let [index, d] of pagDots.entries()){
+//     d.addEventListener("click", () => {
+//         slideWithDots(index)
+//         activeDots()
+//     })
+// }
 
-function slideWithDots(index){
-    carouselScrollX = Math.ceil((carouselWidth * index))
-    carousel.scrollLeft = carouselScrollX
-    showMovieText()
-    // clearInterval(intervalId)
-}
-
-
-function activeDots(){
-    counter = (carouselScrollX / imgWidth)
-    pagDots.forEach(dot => {
-        dot.classList.remove("active-dot")
-    })
-
-    pagDots[counter].classList.add("active-dot")
-
-}
+// function slideWithDots(index){
+//     carouselScrollX = Math.ceil((carouselWidth * index))
+//     carousel.scrollLeft = carouselScrollX
+//     showMovieText()
+//     // clearInterval(intervalId)
+// }
 
 
+// function activeDots(){
+//  counter = imgWidth <= 0 ? 0 : (carouselScrollX / imgWidth)
+    
+//     pagDots.forEach(dot => {
+//         dot.classList.remove("active-dot")
+//     })
 
-function autoSlide(){
-    intervalId = setInterval(() => {
-        carouselScrollX = carouselScrollX == 0 ? carouselScrollX += imgWidth : carouselScrollX >= scrollDiff ? 0 : carouselScrollX += imgWidth
-        if(carousel.scrollLeft >= 7554){
-            // carouselScrollX = 0
-            // carousel.scrollLeft = 0
-            carousel.style.scrollBehavior = "unset"
-        }else{
-            carousel.style.scrollBehavior = "smooth"
+//     pagDots[counter].classList.add("active-dot")
 
-        }
-        carousel.scrollLeft = carouselScrollX 
-        activeDots()
-        showMovieText()
-    }, 4000)
-}
+// }
+
+
+
+// function autoSlide(){
+//     intervalId = setInterval(() => {
+//         carouselScrollX = carouselScrollX == 0 ? carouselScrollX += imgWidth : carouselScrollX >= scrollDiff ? 0 : carouselScrollX += imgWidth
+//         if(carousel.scrollLeft >= 7554){
+//             // carouselScrollX = 0
+//             // carousel.scrollLeft = 0
+//             carousel.style.scrollBehavior = "unset"
+//         }else{
+//             carousel.style.scrollBehavior = "smooth"
+
+//         }
+//         carousel.scrollLeft = carouselScrollX 
+//         activeDots()
+//         showMovieText()
+//     }, 4000)
+// }
 
 // autoSlide()
 let bol = false
 
 
-function enableAutoSlide(){
-    carouselWrappper.addEventListener("mouseenter", () => clearInterval(intervalId))
-    carouselWrappper.addEventListener("mouseleave", () => autoSlide())
-}
+// function enableAutoSlide(){
+//     carouselWrappper.addEventListener("mouseenter", () => clearInterval(intervalId))
+//     carouselWrappper.addEventListener("mouseleave", () => autoSlide())
+// }
 
 // enableAutoSlide()
 
@@ -149,36 +230,36 @@ let touchStartX
 let touchEndX
 let touchDistance
 let threshold = 50
-function touchSlide(){
-    carousel.addEventListener("touchstart", (e) => {
-        touchStartX = e.touches[0].clientX
-        console.log("touchStart!!")
-        // console.log(touchStartX)
-    })
+// function touchSlide(){
+//     carousel.addEventListener("touchstart", (e) => {
+//         touchStartX = e.touches[0].clientX
+//         console.log("touchStart!!")
+//         // console.log(touchStartX)
+//     })
 
-    carousel.addEventListener("touchmove", (e) => {
-        touchEndX = e.touches[0].clientX
-        // console.log(touchEndX)
-    })
+//     carousel.addEventListener("touchmove", (e) => {
+//         touchEndX = e.touches[0].clientX
+//         // console.log(touchEndX)
+//     })
 
-    carousel.addEventListener("touchend", (e) => {
-        touchDistance = touchStartX - touchEndX 
-        if(touchDistance > threshold){
-            console.log("swiped right")
-            carouselScrollX += imgWidth
-            carousel.scrollLeft = carouselScrollX
-        }
+//     carousel.addEventListener("touchend", (e) => {
+//         touchDistance = touchStartX - touchEndX 
+//         if(touchDistance > threshold){
+//             console.log("swiped right")
+//             carouselScrollX += imgWidth
+//             carousel.scrollLeft = carouselScrollX
+//         }
 
-        if(touchDistance < -threshold){
-            console.log("swiped left")
-            carouselScrollX -= imgWidth
-            carousel.scrollLeft = carouselScrollX
-        }
+//         if(touchDistance < -threshold){
+//             console.log("swiped left")
+//             carouselScrollX -= imgWidth
+//             carousel.scrollLeft = carouselScrollX
+//         }
 
-        activeDots()
-        // console.log(touchDistance)
+//         activeDots()
+//         // console.log(touchDistance)
         
-    })
-}
+//     })
+// }
 
-touchSlide()
+// touchSlide()
