@@ -1,5 +1,5 @@
 # This file must be used with "source bin/activate" *from bash*
-# you cannot run it directly
+# You cannot run it directly
 
 
 if [ "${BASH_SOURCE-}" = "$0" ]; then
@@ -23,10 +23,16 @@ deactivate () {
         unset _OLD_VIRTUAL_PYTHONHOME
     fi
 
+<<<<<<< HEAD
     # The hash command must be called to get it to forget past
     # commands. Without forgetting past commands the $PATH changes
     # we made may not be respected
     hash -r 2>/dev/null
+=======
+    # Call hash to forget past commands. Without forgetting
+    # past commands the $PATH changes we made may not be respected
+    hash -r 2> /dev/null
+>>>>>>> refs/remotes/origin/main
 
     if ! [ -z "${_OLD_VIRTUAL_PS1+_}" ] ; then
         PS1="$_OLD_VIRTUAL_PS1"
@@ -36,7 +42,11 @@ deactivate () {
 
     unset VIRTUAL_ENV
     unset VIRTUAL_ENV_PROMPT
+<<<<<<< HEAD
     if [ ! "${1-}" = "nondestructive" ] ; then
+=======
+    if [ ! "${1:-}" = "nondestructive" ] ; then
+>>>>>>> refs/remotes/origin/main
     # Self destruct!
         unset -f deactivate
     fi
@@ -45,11 +55,23 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
+<<<<<<< HEAD
 VIRTUAL_ENV='C:\Users\user\webflix\env'
 if ([ "$OSTYPE" = "cygwin" ] || [ "$OSTYPE" = "msys" ]) && $(command -v cygpath &> /dev/null) ; then
     VIRTUAL_ENV=$(cygpath -u "$VIRTUAL_ENV")
 fi
 export VIRTUAL_ENV
+=======
+# on Windows, a path can contain colons and backslashes and has to be converted:
+if [ "$OSTYPE" = "cygwin" ] || [ "$OSTYPE" = "msys" ] ; then
+    # transform D:\path\to\venv to /d/path/to/venv on MSYS
+    # and to /cygdrive/d/path/to/venv on Cygwin
+    export VIRTUAL_ENV=$(cygpath "C:\Users\onyeb\webflix\env")
+else
+    # use the path as-is
+    export VIRTUAL_ENV="C:\Users\onyeb\webflix\env"
+fi
+>>>>>>> refs/remotes/origin/main
 
 _OLD_VIRTUAL_PATH="$PATH"
 PATH="$VIRTUAL_ENV/Scripts:$PATH"
@@ -68,12 +90,21 @@ if ! [ -z "${PYTHONHOME+_}" ] ; then
     unset PYTHONHOME
 fi
 
+<<<<<<< HEAD
 if [ -z "${VIRTUAL_ENV_DISABLE_PROMPT-}" ] ; then
     _OLD_VIRTUAL_PS1="${PS1-}"
     PS1="(${VIRTUAL_ENV_PROMPT}) ${PS1-}"
+=======
+if [ -z "${VIRTUAL_ENV_DISABLE_PROMPT:-}" ] ; then
+    _OLD_VIRTUAL_PS1="${PS1:-}"
+    PS1="(env) ${PS1:-}"
+>>>>>>> refs/remotes/origin/main
     export PS1
+    VIRTUAL_ENV_PROMPT="(env) "
+    export VIRTUAL_ENV_PROMPT
 fi
 
+<<<<<<< HEAD
 # Make sure to unalias pydoc if it's already there
 alias pydoc 2>/dev/null >/dev/null && unalias pydoc || true
 
@@ -85,3 +116,8 @@ pydoc () {
 # commands. Without forgetting past commands the $PATH changes
 # we made may not be respected
 hash -r 2>/dev/null
+=======
+# Call hash to forget past commands. Without forgetting
+# past commands the $PATH changes we made may not be respected
+hash -r 2> /dev/null
+>>>>>>> refs/remotes/origin/main

@@ -12,7 +12,20 @@
     @set _OLD_VIRTUAL_PYTHONHOME=
 :ENDIFVHOME
 
+<<<<<<< HEAD
 @if not defined _OLD_VIRTUAL_PATH @goto ENDIFVPATH
     @set "PATH=%_OLD_VIRTUAL_PATH%"
     @set _OLD_VIRTUAL_PATH=
 :ENDIFVPATH
+=======
+if defined _OLD_VIRTUAL_PATH (
+    set "PATH=%_OLD_VIRTUAL_PATH%"
+)
+
+set _OLD_VIRTUAL_PATH=
+
+set VIRTUAL_ENV=
+set VIRTUAL_ENV_PROMPT=
+
+:END
+>>>>>>> refs/remotes/origin/main
