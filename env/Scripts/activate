@@ -1,60 +1,42 @@
 # This file must be used with "source bin/activate" *from bash*
-# You cannot run it directly
+# you cannot run it directly
+
+
+if [ "${BASH_SOURCE-}" = "$0" ]; then
+    echo "You must source this script: \$ source $0" >&2
+    exit 33
+fi
 
 deactivate () {
+    unset -f pydoc >/dev/null 2>&1 || true
+
     # reset old environment variables
-    if [ -n "${_OLD_VIRTUAL_PATH:-}" ] ; then
-        PATH="${_OLD_VIRTUAL_PATH:-}"
+    # ! [ -z ${VAR+_} ] returns true if VAR is declared at all
+    if ! [ -z "${_OLD_VIRTUAL_PATH:+_}" ] ; then
+        PATH="$_OLD_VIRTUAL_PATH"
         export PATH
         unset _OLD_VIRTUAL_PATH
     fi
-    if [ -n "${_OLD_VIRTUAL_PYTHONHOME:-}" ] ; then
-        PYTHONHOME="${_OLD_VIRTUAL_PYTHONHOME:-}"
+    if ! [ -z "${_OLD_VIRTUAL_PYTHONHOME+_}" ] ; then
+        PYTHONHOME="$_OLD_VIRTUAL_PYTHONHOME"
         export PYTHONHOME
         unset _OLD_VIRTUAL_PYTHONHOME
     fi
-
-<<<<<<< HEAD
 
     # The hash command must be called to get it to forget past
     # commands. Without forgetting past commands the $PATH changes
     # we made may not be respected
     hash -r 2>/dev/null
-=======
-    # This should detect bash and zsh, which have a hash command that must
-    # be called to get it to forget past commands.  Without forgetting
-    # past commands the $PATH changes we made may not be respected
-    if [ -n "${BASH:-}" -o -n "${ZSH_VERSION:-}" ] ; then
-        hash -r
-    fi
->>>>>>> parent of c811851 (latest changes)
-=======
-    # Call hash to forget past commands. Without forgetting
-    # past commands the $PATH changes we made may not be respected
-    hash -r 2> /dev/null
->>>>>>> refs/remotes/origin/main
 
-    if [ -n "${_OLD_VIRTUAL_PS1:-}" ] ; then
-        PS1="${_OLD_VIRTUAL_PS1:-}"
+    if ! [ -z "${_OLD_VIRTUAL_PS1+_}" ] ; then
+        PS1="$_OLD_VIRTUAL_PS1"
         export PS1
         unset _OLD_VIRTUAL_PS1
     fi
 
     unset VIRTUAL_ENV
-<<<<<<< HEAD
-<<<<<<< HEAD
     unset VIRTUAL_ENV_PROMPT
-<<<<<<< HEAD
     if [ ! "${1-}" = "nondestructive" ] ; then
-=======
-=======
-    unset VIRTUAL_ENV_PROMPT
->>>>>>> refs/remotes/origin/main
-    if [ ! "${1:-}" = "nondestructive" ] ; then
->>>>>>> refs/remotes/origin/main
-=======
-    if [ ! "${1:-}" = "nondestructive" ] ; then
->>>>>>> parent of c811851 (latest changes)
     # Self destruct!
         unset -f deactivate
     fi
@@ -63,83 +45,35 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 VIRTUAL_ENV='C:\Users\user\webflix\env'
 if ([ "$OSTYPE" = "cygwin" ] || [ "$OSTYPE" = "msys" ]) && $(command -v cygpath &> /dev/null) ; then
     VIRTUAL_ENV=$(cygpath -u "$VIRTUAL_ENV")
 fi
-=======
-VIRTUAL_ENV="C:\Users\lenovo\Desktop\env"
->>>>>>> parent of c811851 (latest changes)
 export VIRTUAL_ENV
-=======
-=======
->>>>>>> refs/remotes/origin/main
-# on Windows, a path can contain colons and backslashes and has to be converted:
-if [ "$OSTYPE" = "cygwin" ] || [ "$OSTYPE" = "msys" ] ; then
-    # transform D:\path\to\venv to /d/path/to/venv on MSYS
-    # and to /cygdrive/d/path/to/venv on Cygwin
-    export VIRTUAL_ENV=$(cygpath "C:\Users\onyeb\webflix\env")
-else
-    # use the path as-is
-    export VIRTUAL_ENV="C:\Users\onyeb\webflix\env"
-fi
-<<<<<<< HEAD
->>>>>>> refs/remotes/origin/main
-=======
->>>>>>> refs/remotes/origin/main
 
 _OLD_VIRTUAL_PATH="$PATH"
 PATH="$VIRTUAL_ENV/Scripts:$PATH"
 export PATH
 
+if [ "x" != x ] ; then
+    VIRTUAL_ENV_PROMPT=""
+else
+    VIRTUAL_ENV_PROMPT=$(basename "$VIRTUAL_ENV")
+fi
+export VIRTUAL_ENV_PROMPT
+
 # unset PYTHONHOME if set
-# this will fail if PYTHONHOME is set to the empty string (which is bad anyway)
-# could use `if (set -u; : $PYTHONHOME) ;` in bash
-if [ -n "${PYTHONHOME:-}" ] ; then
-    _OLD_VIRTUAL_PYTHONHOME="${PYTHONHOME:-}"
+if ! [ -z "${PYTHONHOME+_}" ] ; then
+    _OLD_VIRTUAL_PYTHONHOME="$PYTHONHOME"
     unset PYTHONHOME
 fi
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 if [ -z "${VIRTUAL_ENV_DISABLE_PROMPT-}" ] ; then
     _OLD_VIRTUAL_PS1="${PS1-}"
     PS1="(${VIRTUAL_ENV_PROMPT}) ${PS1-}"
-=======
-if [ -z "${VIRTUAL_ENV_DISABLE_PROMPT:-}" ] ; then
-    _OLD_VIRTUAL_PS1="${PS1:-}"
-    PS1="(env) ${PS1:-}"
->>>>>>> refs/remotes/origin/main
-=======
-if [ -z "${VIRTUAL_ENV_DISABLE_PROMPT:-}" ] ; then
-    _OLD_VIRTUAL_PS1="${PS1:-}"
-<<<<<<< HEAD
-    if [ "x(env) " != x ] ; then
-	PS1="(env) ${PS1:-}"
-    else
-    if [ "`basename \"$VIRTUAL_ENV\"`" = "__" ] ; then
-        # special case for Aspen magic directories
-        # see http://www.zetadev.com/software/aspen/
-        PS1="[`basename \`dirname \"$VIRTUAL_ENV\"\``] $PS1"
-    else
-        PS1="(`basename \"$VIRTUAL_ENV\"`)$PS1"
-    fi
-    fi
->>>>>>> parent of c811851 (latest changes)
-=======
-    PS1="(env) ${PS1:-}"
->>>>>>> refs/remotes/origin/main
     export PS1
-    VIRTUAL_ENV_PROMPT="(env) "
-    export VIRTUAL_ENV_PROMPT
 fi
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 # Make sure to unalias pydoc if it's already there
 alias pydoc 2>/dev/null >/dev/null && unalias pydoc || true
 
@@ -151,21 +85,3 @@ pydoc () {
 # commands. Without forgetting past commands the $PATH changes
 # we made may not be respected
 hash -r 2>/dev/null
-=======
-# Call hash to forget past commands. Without forgetting
-# past commands the $PATH changes we made may not be respected
-hash -r 2> /dev/null
->>>>>>> refs/remotes/origin/main
-=======
-# This should detect bash and zsh, which have a hash command that must
-# be called to get it to forget past commands.  Without forgetting
-# past commands the $PATH changes we made may not be respected
-if [ -n "${BASH:-}" -o -n "${ZSH_VERSION:-}" ] ; then
-    hash -r
-fi
->>>>>>> parent of c811851 (latest changes)
-=======
-# Call hash to forget past commands. Without forgetting
-# past commands the $PATH changes we made may not be respected
-hash -r 2> /dev/null
->>>>>>> refs/remotes/origin/main
