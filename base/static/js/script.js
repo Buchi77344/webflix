@@ -5,7 +5,9 @@
 let hamburger = document.querySelector(".hamburger")
 let mobileMenu = document.querySelector(".mobile-menu")
 let sideMenuHamburger = document.querySelector(".menu-toggle")
+let moreIcon = document.querySelector(".menu-item a.more")
 let leftSideBar = document.querySelector(".left-side-bar")
+let mobileLeftSideBar = document.querySelector(".mobile-left-side-bar")
 
 hamburger.addEventListener("click", (e) => {
     console.log("clicked")
@@ -16,6 +18,12 @@ hamburger.addEventListener("click", (e) => {
 sideMenuHamburger.addEventListener("click", (e) => {
     console.log("clicked")
     leftSideBar.classList.toggle("side-open")
+})
+
+moreIcon.addEventListener("click", (e) => {
+    e.preventDefault()
+    console.log("mobile")
+    mobileLeftSideBar.classList.toggle("slide-left")
 })
 
 // Carousel script
@@ -88,14 +96,6 @@ let intervalId
 //     console.log("null")
 // }
 
-// carouselDivs.forEach((img) => {
-//     imgWidth = img.clientWidth
-// })
-
-// console.log(imgWidth)
- 
-
-// let counter = imgWidth <= 0 ? 0 : (carouselScrollX / imgWidth)
 let counter = 0
 
 pagDots[counter].classList.add("active-dot")
@@ -143,7 +143,7 @@ scrollBtn.forEach((btn) => {
 let cDiv
 function nextImage(){
     carouselDivs[counter].style.animation = "next1 .5s ease forwards"
-    if(counter < 0 || counter >= carouselDivs.length - 1){
+    if(counter >= carouselDivs.length - 1){
         counter = 0
     }else{
         counter++
@@ -151,6 +151,7 @@ function nextImage(){
 
     carouselDivs[counter].style.animation = "next2 .5s ease forwards"
     console.log(carouselDivs[counter])
+    slideactiveDots(counter)
 }
 
 function prevImage(){
@@ -163,42 +164,62 @@ function prevImage(){
 
     carouselDivs[counter].style.animation = "prev2 .5s ease forwards"
     console.log(counter)
+    slideactiveDots(counter)
 
 }
 
 
 //pagination button handler script
 
-// for(let [index, d] of pagDots.entries()){
-//     d.addEventListener("click", () => {
-//         slideWithDots(index)
-//         activeDots()
-//     })
-// }
+for(let [index, d] of pagDots.entries()){
+    d.addEventListener("click", () => {
+        slideWithDots(index)
+        
+    })
+}
 
-// function slideWithDots(index){
-//     carouselScrollX = Math.ceil((carouselWidth * index))
-//     carousel.scrollLeft = carouselScrollX
-//     showMovieText()
-//     // clearInterval(intervalId)
-// }
+function slideWithDots(index = 0){
+    let targetIndex = index
+
+    let direction = targetIndex > counter ? 1 : -1
+    console.log(direction)
+    if(direction == 1){
+            carouselDivs[counter].style.animation = "next1 .5s ease forwards"
+            carouselDivs[targetIndex].style.animation = "next2 .5s ease forwards"
+    } 
+
+    if(direction == -1){
+            carouselDivs[counter].style.animation = "prev1 .5s ease forwards"
+            carouselDivs[targetIndex].style.animation = "prev2 .5s ease forwards"
+    }
+
+    counter = index
+    clickActiveDots(counter)
+}
 
 
-// function activeDots(){
-//  counter = imgWidth <= 0 ? 0 : (carouselScrollX / imgWidth)
+function slideactiveDots(counter){
+    pagDots.forEach(dot => {
+        dot.classList.remove("active-dot")
+    })
+
+    pagDots[counter].classList.add("active-dot")
+
+}
+
+function clickActiveDots(index){
+
+        pagDots.forEach(dot => {
+            dot.classList.remove("active-dot")
+        })
     
-//     pagDots.forEach(dot => {
-//         dot.classList.remove("active-dot")
-//     })
-
-//     pagDots[counter].classList.add("active-dot")
-
-// }
+        pagDots[index].classList.add("active-dot")
+    
+    }
 
 
-
-// function autoSlide(){
-//     intervalId = setInterval(() => {
+function autoSlide(){
+    intervalId = setInterval(() => {
 //         carouselScrollX = carouselScrollX == 0 ? carouselScrollX += imgWidth : carouselScrollX >= scrollDiff ? 0 : carouselScrollX += imgWidth
 //         if(carousel.scrollLeft >= 7554){
 //             // carouselScrollX = 0
@@ -209,19 +230,20 @@ function prevImage(){
 
 //         }
 //         carousel.scrollLeft = carouselScrollX 
+            nextImage()
 //         activeDots()
 //         showMovieText()
-//     }, 4000)
-// }
+    }, 4000)
+}
 
 // autoSlide()
 let bol = false
 
 
-// function enableAutoSlide(){
-//     carouselWrappper.addEventListener("mouseenter", () => clearInterval(intervalId))
-//     carouselWrappper.addEventListener("mouseleave", () => autoSlide())
-// }
+function enableAutoSlide(){
+    carouselWrappper.addEventListener("mouseenter", () => clearInterval(intervalId))
+    carouselWrappper.addEventListener("mouseleave", () => autoSlide())
+}
 
 // enableAutoSlide()
 
