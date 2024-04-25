@@ -211,7 +211,7 @@ function autoSlide(){
     }, 4000)
 }
 
-autoSlide()
+// autoSlide()
 let bol = false
 
 
@@ -238,12 +238,16 @@ function touchSlide(){
 
     carousel.addEventListener("touchmove", (e) => {
         touchEndX = e.touches[0].clientX
+        console.log(touchEndX)
+        console.log("touchMove")
         // console.log(touchEndX)
     })
 
     carousel.addEventListener("touchend", (e) => {
         touchDistance = touchStartX - touchEndX 
+        console.log(touchDistance)
         //swipe right
+        console.log("touchStart!!")
         if(touchDistance > threshold){
             console.log("swiped right")
 
