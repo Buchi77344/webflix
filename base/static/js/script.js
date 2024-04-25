@@ -121,22 +121,6 @@ scrollBtn.forEach((btn) => {
         // console.log(carouselScrollX)
         // console.log(counter)
 
-        // if (carouselScrollX < 0){
-        //     carouselScrollX = 0
-        // }
-
-        // if(carouselScrollX == 7554){
-        //     // carouselScrollX = 0
-        //     carousel.style.scrollBehavior = "unset"
-        // }else{
-        //     carousel.style.scrollBehavior = "smooth"
-
-        // }
-        // carousel.scrollLeft = Math.ceil(carouselScrollX)
-        // // carouselScrollX >= scrollDiff ? document.querySelector(".next-btn").style.display = "none" : document.querySelector(".next-btn").style.display = "block"
-        // carouselScrollX == 0 ? document.querySelector(".prev-btn").style.display = "none" : document.querySelector(".prev-btn").style.display = "block"
-        // console.log(carouselScrollX)
-        // activeDots()
         // showMovieText()
     })
 })
@@ -220,6 +204,71 @@ function clickActiveDots(index){
 
 function autoSlide(){
     intervalId = setInterval(() => {
+
+            nextImage()
+            slideactiveDots(counter)
+//         showMovieText()
+    }, 4000)
+}
+
+autoSlide()
+let bol = false
+
+
+function enableAutoSlide(){
+    carouselWrappper.addEventListener("mouseenter", () => clearInterval(intervalId))
+    carouselWrappper.addEventListener("mouseleave", () => autoSlide())
+}
+
+enableAutoSlide()
+
+
+let touchStartX
+let touchEndX
+let touchDistance
+let threshold = 50
+function touchSlide(){
+    carousel.addEventListener("touchstart", (e) => {
+        touchStartX = e.touches[0].clientX
+        console.log("touchStart!!")
+        // console.log(touchStartX)
+    })
+
+    carousel.addEventListener("touchmove", (e) => {
+        touchEndX = e.touches[0].clientX
+        // console.log(touchEndX)
+    })
+
+    carousel.addEventListener("touchend", (e) => {
+        touchDistance = touchStartX - touchEndX 
+        //swipe right
+        if(touchDistance > threshold){
+            console.log("swiped right")
+
+            nextImage()
+        }
+
+        // swipe left
+        if(touchDistance < -threshold){
+            console.log("swiped left")
+ 
+            prevImage()
+        }
+
+        slideactiveDots(counter)
+        // console.log(touchDistance)
+        
+    })
+}
+
+touchSlide()
+
+            // carouselScrollX += imgWidth
+            // carousel.scrollLeft = carouselScrollX
+
+           // carouselScrollX -= imgWidth
+            // carousel.scrollLeft = carouselScrollX
+
 //         carouselScrollX = carouselScrollX == 0 ? carouselScrollX += imgWidth : carouselScrollX >= scrollDiff ? 0 : carouselScrollX += imgWidth
 //         if(carousel.scrollLeft >= 7554){
 //             // carouselScrollX = 0
@@ -230,58 +279,19 @@ function autoSlide(){
 
 //         }
 //         carousel.scrollLeft = carouselScrollX 
-            nextImage()
-//         activeDots()
-//         showMovieText()
-    }, 4000)
-}
 
-// autoSlide()
-let bol = false
+ // if (carouselScrollX < 0){
+        //     carouselScrollX = 0
+        // }
 
+        // if(carouselScrollX == 7554){
+        //     // carouselScrollX = 0
+        //     carousel.style.scrollBehavior = "unset"
+        // }else{
+        //     carousel.style.scrollBehavior = "smooth"
 
-function enableAutoSlide(){
-    carouselWrappper.addEventListener("mouseenter", () => clearInterval(intervalId))
-    carouselWrappper.addEventListener("mouseleave", () => autoSlide())
-}
-
-// enableAutoSlide()
-
-
-let touchStartX
-let touchEndX
-let touchDistance
-let threshold = 50
-// function touchSlide(){
-//     carousel.addEventListener("touchstart", (e) => {
-//         touchStartX = e.touches[0].clientX
-//         console.log("touchStart!!")
-//         // console.log(touchStartX)
-//     })
-
-//     carousel.addEventListener("touchmove", (e) => {
-//         touchEndX = e.touches[0].clientX
-//         // console.log(touchEndX)
-//     })
-
-//     carousel.addEventListener("touchend", (e) => {
-//         touchDistance = touchStartX - touchEndX 
-//         if(touchDistance > threshold){
-//             console.log("swiped right")
-//             carouselScrollX += imgWidth
-//             carousel.scrollLeft = carouselScrollX
-//         }
-
-//         if(touchDistance < -threshold){
-//             console.log("swiped left")
-//             carouselScrollX -= imgWidth
-//             carousel.scrollLeft = carouselScrollX
-//         }
-
-//         activeDots()
-//         // console.log(touchDistance)
-        
-//     })
-// }
-
-// touchSlide()
+        // }
+        // carousel.scrollLeft = Math.ceil(carouselScrollX)
+        // // carouselScrollX >= scrollDiff ? document.querySelector(".next-btn").style.display = "none" : document.querySelector(".next-btn").style.display = "block"
+        // carouselScrollX == 0 ? document.querySelector(".prev-btn").style.display = "none" : document.querySelector(".prev-btn").style.display = "block"
+        // console.log(carouselScrollX)

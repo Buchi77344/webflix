@@ -131,7 +131,7 @@ nav .container{
     display : none;
 }
 
-.hamburger::after{
+/* .hamburger::after{
     content : '';
     position : absolute;
     inset : 0;
@@ -144,7 +144,7 @@ nav .container{
 
 .hamburger:hover::after{
     transform : scaleY(1)
-}
+} */
 
 .hamburger > span{
     width : 24px;
@@ -174,7 +174,7 @@ nav .container{
 
 .mobile-menu{
     display : block;
-    background-color: #333;
+    background-color: hsl(248deg 50% 2%);
     max-height : 0;
     padding: 0px;
     overflow-y: hidden;
@@ -219,20 +219,25 @@ nav .container{
     position : fixed;
     z-index : 100;
     background-color : #212227;
+    height : calc(100dvh - 133px);
     height : calc(100vh - 133px);
     max-width: 200px;
     width : 200px;
-    left : -100%;
+    transform : translateX(-100%);
     overflow-y: auto;
-    transition : left .5s ease;
+    transition : transform .5s ease;
 }
 
 .slide-left{
-    left : 0;
+    transform : translateX(0);
 }
 
 .mobile-left-side-bar .menu{
     flex-direction: column;
+}
+
+.mobile-left-side-bar .menu-item{
+    height :auto;
 }
 
 .mobile-left-side-bar .menu-item a{
@@ -760,6 +765,10 @@ nav .container{
         display : flex;
     }
 
+    .slide-btn{
+        display: none;
+    }
+
     .main-section-grid{
         height: calc(100% - 88px);
     }
@@ -833,7 +842,7 @@ nav .container{
     }
 
     .dot{
-        padding : 8px;
+        padding : 6px;
     }
 
     .carousel-container .watch-btn{
