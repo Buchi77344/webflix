@@ -27,6 +27,9 @@ set _OLD_VIRTUAL_PATH=
 
 set VIRTUAL_ENV=
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> refs/remotes/origin/main
 set VIRTUAL_ENV_PROMPT=
 
 :END

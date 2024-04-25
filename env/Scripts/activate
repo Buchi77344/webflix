@@ -14,6 +14,7 @@ deactivate () {
         unset _OLD_VIRTUAL_PYTHONHOME
     fi
 
+<<<<<<< HEAD
 
     # The hash command must be called to get it to forget past
     # commands. Without forgetting past commands the $PATH changes
@@ -27,6 +28,11 @@ deactivate () {
         hash -r
     fi
 >>>>>>> parent of c811851 (latest changes)
+=======
+    # Call hash to forget past commands. Without forgetting
+    # past commands the $PATH changes we made may not be respected
+    hash -r 2> /dev/null
+>>>>>>> refs/remotes/origin/main
 
     if [ -n "${_OLD_VIRTUAL_PS1:-}" ] ; then
         PS1="${_OLD_VIRTUAL_PS1:-}"
@@ -36,10 +42,14 @@ deactivate () {
 
     unset VIRTUAL_ENV
 <<<<<<< HEAD
+<<<<<<< HEAD
     unset VIRTUAL_ENV_PROMPT
 <<<<<<< HEAD
     if [ ! "${1-}" = "nondestructive" ] ; then
 =======
+=======
+    unset VIRTUAL_ENV_PROMPT
+>>>>>>> refs/remotes/origin/main
     if [ ! "${1:-}" = "nondestructive" ] ; then
 >>>>>>> refs/remotes/origin/main
 =======
@@ -55,6 +65,7 @@ deactivate nondestructive
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 VIRTUAL_ENV='C:\Users\user\webflix\env'
 if ([ "$OSTYPE" = "cygwin" ] || [ "$OSTYPE" = "msys" ]) && $(command -v cygpath &> /dev/null) ; then
     VIRTUAL_ENV=$(cygpath -u "$VIRTUAL_ENV")
@@ -64,6 +75,8 @@ VIRTUAL_ENV="C:\Users\lenovo\Desktop\env"
 >>>>>>> parent of c811851 (latest changes)
 export VIRTUAL_ENV
 =======
+=======
+>>>>>>> refs/remotes/origin/main
 # on Windows, a path can contain colons and backslashes and has to be converted:
 if [ "$OSTYPE" = "cygwin" ] || [ "$OSTYPE" = "msys" ] ; then
     # transform D:\path\to\venv to /d/path/to/venv on MSYS
@@ -73,6 +86,9 @@ else
     # use the path as-is
     export VIRTUAL_ENV="C:\Users\onyeb\webflix\env"
 fi
+<<<<<<< HEAD
+>>>>>>> refs/remotes/origin/main
+=======
 >>>>>>> refs/remotes/origin/main
 
 _OLD_VIRTUAL_PATH="$PATH"
@@ -100,6 +116,7 @@ if [ -z "${VIRTUAL_ENV_DISABLE_PROMPT:-}" ] ; then
 =======
 if [ -z "${VIRTUAL_ENV_DISABLE_PROMPT:-}" ] ; then
     _OLD_VIRTUAL_PS1="${PS1:-}"
+<<<<<<< HEAD
     if [ "x(env) " != x ] ; then
 	PS1="(env) ${PS1:-}"
     else
@@ -112,11 +129,15 @@ if [ -z "${VIRTUAL_ENV_DISABLE_PROMPT:-}" ] ; then
     fi
     fi
 >>>>>>> parent of c811851 (latest changes)
+=======
+    PS1="(env) ${PS1:-}"
+>>>>>>> refs/remotes/origin/main
     export PS1
     VIRTUAL_ENV_PROMPT="(env) "
     export VIRTUAL_ENV_PROMPT
 fi
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 # Make sure to unalias pydoc if it's already there
@@ -143,3 +164,8 @@ if [ -n "${BASH:-}" -o -n "${ZSH_VERSION:-}" ] ; then
     hash -r
 fi
 >>>>>>> parent of c811851 (latest changes)
+=======
+# Call hash to forget past commands. Without forgetting
+# past commands the $PATH changes we made may not be respected
+hash -r 2> /dev/null
+>>>>>>> refs/remotes/origin/main

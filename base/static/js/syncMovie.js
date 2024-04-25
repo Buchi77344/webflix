@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // const data = {
 //     name : "ola",
 //     age : 10,
@@ -28,6 +29,22 @@ function loadingFunc(loading){
 }
 
 //const sendMovieData = () => {
+=======
+function getMovie(){
+    // fetch("api")
+    //     .then(res => res.json())
+    //     .then(data => console.log(data))
+    //     .catch(err => console.log(err))
+    const data = {
+        name : "ola",
+        age : 10,
+        city : "Netherland"
+    }
+    return data
+}
+
+function sendMovie(){
+>>>>>>> refs/remotes/origin/main
     // fetch("endpoint", {
     //     method: 'POST',
     //     headers : "Application/json",
@@ -37,9 +54,17 @@ function loadingFunc(loading){
     //     .then(data => console.log(data))
     //     .catch(err => console.log(err))
 
+<<<<<<< HEAD
 //}
 
 const sendMovie = await getMovie()
 
 
 export default sendMovie
+=======
+    return getMovie()
+}
+
+console.log(getMovie())
+// export default sendMovie()
+>>>>>>> refs/remotes/origin/main

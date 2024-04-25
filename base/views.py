@@ -1,12 +1,16 @@
 
 from django.shortcuts import render ,redirect ,get_object_or_404
-from .models import Movie ,Category ,ViewedIP ,User, Topic
+from .models import Movie ,Category ,ViewedIP ,User, Topic ,LatestMovie
 from django.views import generic
 from django.urls import reverse
 # from django.contrib.gis.geoip2 import GeoIP2
 from django.db.models import Q
 import json
 from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_protect
+import json
+from django.http import JsonResponse
+
 
 class indexpageview(generic.ListView):
     template_name = 'index.html'
@@ -99,4 +103,16 @@ def movie_list(request):
 
 
 # Create your views here.
-
+@csrf_protect
+def add_data(request):
+    if request.method =='POST':
+        try:
+            data =json.loads(request.body)
+            LatestMovie.objects.create(title=data.get('title',''),
+              image_cover  =data.get(' image_cover',''),                        
+            )
+            return JsonResponse({'succes':True})
+        except json.JSONDecodeError as e:
+            return JsonResponse({'error':'invalid Jason payload'})
+    else:
+         return JsonResponse({'error':'invalid request method'})
