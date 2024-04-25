@@ -9,21 +9,15 @@
     <title>Document</title>
 </head>
 <body>
-    <div class = "loader-container">
-        {% comment %} <div class = "loader"></div>  {% endcomment %}
-        <svg viewBox = "0 0 400 350">
-            <text x = "50%" y = "50%" dy = "3.2rem" text-anchor = "middle" class = "text-body">Webflix</text>
-            <text x = "50%" y = "50%" dy = "3.2rem" dx = "11.1rem" text-anchor = "middle" class = "text-body">.</text>
-        </svg>
-    </div>
     <div class = "page">
+
         <nav>
             <div class = "container">
                 <div class = "nav-wrapper">
                     <a href = "/"><span class = "logo">WEBFLIX</span></a>
                     <ul class = "index-links-container">
-                        <li><a class = "index-links" href = "/">Home</a></li>
-                        <li><a class = "index-links" href = "aboutus">About Us</a></li>
+                        <li><a class = "index-links" href = "#">Home</a></li>
+                        <li><a class = "index-links" href = "#">About Us</a></li>
                         <li><a class = "index-links" href = "#">Genre</a></li>
                         <li><a class = "index-links" href = "#">My List</a></li>
                     </ul>
@@ -41,10 +35,10 @@
 
                 <div class = "mobile-menu">
                     <ul class = "mobile-links-container">
-                        <li><a class = "mobile-link" href = "/">Home</a></li>
+                        <li><a class = "mobile-link" href = "#">Home</a></li>
                         <li><a class = "mobile-link" href = "#">Genre</a></li>
                         <li><a class = "mobile-link" href = "#">My List</a></li>
-                        <li><a class = "mobile-link" href = "aboutus">About Us</a></li>
+                        <li><a class = "mobile-link" href = "#">About Us</a></li>
                     </ul>
                 </div>
             </div>
@@ -152,7 +146,7 @@
                             <span></span>
                             <span></span>
                         </div>
-                        
+
                         <p class = "menu-icon-text">Menu</p>
                     </div>
 
@@ -267,7 +261,6 @@
                         
                     </ul>
                 </div>
-
 
                 <div class = "main-feed">
                     <div class = "carousel-wrapper">
@@ -641,18 +634,11 @@
         </section>
 
     </div>
-    <script>
-        const loaderContainer = document.querySelector(".loader-container")
-        const page = document.querySelector(".page")
 
-        window.addEventListener("load", () => {
-            setTimeout(() => {
-                loaderContainer.classList.add("hidden")
-                page.classList.add("visible")
-            }, 3000)
-        })
+    <script>
+        
+
+
     </script>
 </body>
 </html>
-
- 
