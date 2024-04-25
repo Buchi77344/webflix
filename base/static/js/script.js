@@ -230,6 +230,8 @@ let threshold = 50
 function touchSlide(){
     carousel.addEventListener("touchstart", (e) => {
         touchStartX = e.touches[0].clientX
+        clearInterval(intervalId)
+
         console.log("touchStart!!")
         // console.log(touchStartX)
     })
