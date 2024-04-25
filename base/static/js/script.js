@@ -6,7 +6,6 @@
 
 
 // console.log(movie)
-// console.log(sendMovie.results)
 
 
 // Navigation script
@@ -83,7 +82,6 @@ function sendMovie(data){
 
 getMovie()
 
-console.log(movieDesc)
 
 let imgWidth
 let carouselWidth = carousel.clientWidth
@@ -157,8 +155,9 @@ pagDots[counter].classList.add("active-dot")
 //                 // console.log(data[counter])
 //             }
 //         })
+   
     // movieTextEl.classList.add("movie-text-reveal")
-
+//}
 
 
 // showMovieText()
@@ -172,7 +171,7 @@ scrollBtn.forEach((btn) => {
         // showMovieText()
     })
 })
-let cDiv
+
 function nextImage(){
     carouselDivs[counter].style.animation = "next1 .5s ease forwards"
     if(counter >= carouselDivs.length - 1){
