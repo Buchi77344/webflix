@@ -56,13 +56,13 @@ class User(models.Model):
 
 
 class LatestMovie (models.Model):
-    uu_id =models.UUIDField(default=uuid.uuid4)
+   
     title = models.CharField(max_length=255)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    description = models.TextField()
+    overview = models.TextField()
     release_date = models.DateField()
     length =models.PositiveIntegerField()
-    image_card =models.ImageField(upload_to='movie_images/')
+    poster_path =models.ImageField(upload_to='movie_images/')
     image_cover =models.ImageField(upload_to='movie_images/')
     video = models.FileField(upload_to='movie_images/',blank=True)
     movie_views = models.IntegerField(default=0)
@@ -71,3 +71,6 @@ class LatestMovie (models.Model):
 
     def __str__(self):
         return self.title
+    
+class YourModel(models.Model):
+    crud = models.TextField()

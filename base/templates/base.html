@@ -1,0 +1,17 @@
+
+        {% block content %}
+
+    {% endblock %}
+    <script>
+        const loaderContainer = document.querySelector(".loader-container")
+        const page = document.querySelector(".page")
+
+        window.addEventListener("load", () => {
+            setTimeout(() => {
+                loaderContainer.classList.add("hidden")
+                page.classList.add("visible")
+            }, 3000)
+        })
+    </script>
+</body>
+</html>

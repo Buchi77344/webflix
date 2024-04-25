@@ -1,5 +1,15 @@
 <h1>list of Moive you addded</h1>
- {% for movie in movie %}
-<h4>channel name:{{movies.name}}</h4>
-<h4>Movie Name:{{movies.movie}}</h4>
+{% if movie_data %}
+ {% for movie_data in movie_data %}
+<h4>channel name:{{movie_data.title}}</h4>
+<h4>Movie Name:{{movie_data.overview}}</h4>
+<h4>Release Date:{{movie_data.release_date}}</h4>
+{% if movie_data.poster_path  %}
+<img src="https://image.tmdb.org/t/p/w500{{movie_data.poster_path}}" alt="{{movie.title}}">
+{% else %}
+<p>no image</p>
+{% endif %}
 {% endfor %}
+{% else %}
+<h1>no movie</h1>
+{% endif %}
