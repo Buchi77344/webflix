@@ -10,5 +10,5 @@ urlpatterns = [
     path('movielist', views.movie_list, name='movelist'),
     path('dell',views.dell,name='dell'),
     path('aboutus',views.aboutus,name='aboutus'),
-#     path('add-data',views.add_data,name ='add-data'),
+    path('fetchapi', views.fetchapi, name= 'fetchapi')
 ]

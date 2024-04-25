@@ -116,31 +116,6 @@ def movie_list(request):
 
 
 
-# Create your views here.
-# @csrf_protect
-# def add_data(request):
-#     if request.method =='POST':
-#         try:
-#             data =json.loads(request.body)
-#             LatestMovie.objects.create(title=data.get('title',''),
-#               image_cover  =data.get(' image_cover',''),                        
-#             )
-#             return JsonResponse({'succes':True})
-#         except json.JSONDecodeError as e:
-#             return JsonResponse({'error':'invalid Jason payload'})
-#     else:
-#          return JsonResponse({'error':'invalid request method'})
-    
-# api_key = '84cce1176ec500693be04f9ce60273de'
-# tmdb_url = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc'
-# response = requests.get(tmdb_url,params={'api_key':api_key})
-# if response.status_code==200:
-
-#     tmdb_data =response.json()
-
-#     title =tmdb_data.get('title') or tmdb_data.get(' original_title')
-#     description =tmdb_data.get('overview
-
 
 
 def dell(request):
@@ -166,3 +141,5 @@ def aboutus(request):
     return render (request, 'aboutus.html')
 
 
+def fetchapi(request):
+    return JsonResponse({"message":"success"})

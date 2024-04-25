@@ -14,17 +14,16 @@ class Category(models.Model):
      def __str__(self):
             return self.name
 class Movie (models.Model):
-    uu_id =models.UUIDField(default=uuid.uuid4)
+    slug =models.SlugField(max_length=120,null=True,blank=True)
     title = models.CharField(max_length=255)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    description = models.TextField()
+    category = models.ForeignKey(Category, on_delete=models.CASCADE ,blank=True)
+    overview = models.TextField()
     release_date = models.DateField()
-    length =models.PositiveIntegerField()
-    image_card =models.ImageField(upload_to='movie_images/')
-    image_cover =models.ImageField(upload_to='movie_images/')
-    video = models.FileField(upload_to='movie_images/',)
-    movie_views = models.IntegerField(default=0)
-    viewed_ips =models.ManyToManyField('ViewedIP',blank=True)
+    poster_path =models.ImageField(upload_to='movie_images/')
+    video = models.FileField(upload_to='movie_images/',blank=True)
+    vote_average = models.DecimalField( max_digits=5, decimal_places=2, null=True)
+
+  
     
 
     def __str__(self):
@@ -41,6 +40,7 @@ class ViewedIP(models.Model):
 class Aboutus(models.Model):
     title = models.CharField(max_length=200)
     about = models.TextField()
+    
 
     def __str__(self):
         return self.title
@@ -74,3 +74,9 @@ class LatestMovie (models.Model):
     
 class YourModel(models.Model):
     crud = models.TextField()
+class TimeStamp(models.Model):
+    stamp = models.CharField( max_length=255,null=True)
+    value = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.stamp
