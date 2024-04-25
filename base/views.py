@@ -13,7 +13,7 @@ from django.http import JsonResponse
 from.models  import LatestMovie
 import requests
 import time
-from .snap import get_latest_movie
+
 
 
 
@@ -27,7 +27,7 @@ class indexpageview(generic.ListView):
     context_object_name = 'movies'
     
 def index(request):
-    movie =get_latest_movie()
+
     context = {
         'movie': movie
     }
@@ -108,11 +108,7 @@ def category_list(request):
 #         return render (request, 'create_movie_list.html',context)
 
 def movie_list(request):
-    movie_data =get_latest_movie()
-    context = {
-        'movie_data': movie_data
-    }
-    return render (request, 'movie_list.html', context)
+    return render (request, 'movie_list.html')
 
 
 
