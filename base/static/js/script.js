@@ -1,3 +1,4 @@
+
 // import movie from "./syncMovie.js"
 // let topic = [];
 // console.log(movie)
@@ -6,6 +7,7 @@
 
 
 // console.log(movie)
+
 
 
 // Navigation script
@@ -83,6 +85,46 @@ let videoContainer = document.querySelector(".video-card-container")
 // getMovie()
 
 
+async function getMovie(){
+    const API_KEY = "84cce1176ec500693be04f9ce60273de"
+    fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=84cce1176ec500693be04f9ce60273de`)
+    .then(res => res.json())
+    .then(data => sendMovie(data))
+    .catch(err => console.log(err))
+
+    // const res = await fetch(`https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&${API_KEY}`)
+    // const data = await res.json()
+    // return  data
+}
+
+function sendMovie(data){
+    console.log(data)
+    let listMel = ''
+    for(let i = 0; i < data.results.length; i++){
+        listMel += `
+        
+            <a class = "video-link" href = "/">
+                <img class = "video-card" src = "" alt = "video image card"/>
+                <div class = "video-description">
+                    <h3>HD</h3>
+    
+                    <div class = "details">
+                        <p>${data.results[i].original_title}</p>
+                        <p>PG-13</p>
+                        <p>${data.results[i].vote_average}</p>
+                    </div>
+                </div>
+            </a>
+        `
+    
+    }
+    videoContainer.innerHTML = listMel
+    console.log(movieDesc)
+}
+
+getMovie()
+
+
 let imgWidth
 let carouselWidth = carousel.clientWidth
 let carouselScrollWidth = carousel.scrollWidth
@@ -156,9 +198,22 @@ pagDots[counter].classList.add("active-dot")
 //             }
 //         })
    
+
     // movieTextEl.classList.add("movie-text-reveal")
 //}
 
+
+
+
+
+    // movieTextEl.classList.add("movie-text-reveal")
+//}
+
+
+
+
+//     // movieTextEl.classList.add("movie-text-reveal")
+// }
 
 // showMovieText()
 
